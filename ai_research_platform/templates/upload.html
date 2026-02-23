@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block title %}Upload Data - AI Research Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Upload Survey Data</h1>
+    <p class="subtitle">Upload your CSV file containing survey responses</p>
+</div>
+
+<div class="card">
+    <h2>Upload CSV File</h2>
+    <p>Select a CSV file with your survey data. The file must contain all required columns listed below.</p>
+
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+        <div class="form-group">
+            <label for="file">Select CSV File:</label>
+            <input type="file" name="file" id="file" accept=".csv" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload and Save</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Or Generate Sample Data</h2>
+    <p>Don't have data yet? Generate 100 synthetic survey responses to test the platform.</p>
+    <a href="{{ url_for('generate_sample') }}" class="btn btn-secondary">Generate 100 Sample Records</a>
+</div>
+
+<div class="card">
+    <h2>Required Columns</h2>
+    <p>Your CSV must include these columns (column names must match exactly):</p>
+    <table class="stats-table">
+        <thead>
+            <tr>
+                <th>Column Name</th>
+                <th>Description</th>
+                <th>Example Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>age</td><td>Age of respondent</td><td>18, 21, 25</td></tr>
+            <tr><td>gender</td><td>Gender identity</td><td>Male, Female, Non-binary</td></tr>
+            <tr><td>major</td><td>Academic major</td><td>Computer Science, Business, Arts</td></tr>
+            <tr><td>academic_year</td><td>Year of study</td><td>Freshman, Sophomore, Junior, Senior</td></tr>
+            <tr><td>ai_usage</td><td>Does respondent use AI?</td><td>Yes, No</td></tr>
+            <tr><td>ai_frequency</td><td>How often AI is used</td><td>Daily, Weekly, Monthly, Rarely</td></tr>
+            <tr><td>comfort_level</td><td>Comfort with AI (1-5 scale)</td><td>1, 2, 3, 4, 5</td></tr>
+            <tr><td>gpa</td><td>Grade Point Average</td><td>3.5, 2.8, 3.9</td></tr>
+            <tr><td>career_interest</td><td>Career interest in AI (1-5)</td><td>1, 2, 3, 4, 5</td></tr>
+            <tr><td>ethical_concern</td><td>Ethical concern level (1-5)</td><td>1, 2, 3, 4, 5</td></tr>
+            <tr><td>job_replacement_fear</td><td>Fear of job replacement by AI (1-5)</td><td>1, 2, 3, 4, 5</td></tr>
+            <tr><td>optimism_score</td><td>Optimism about AI future (1-5)</td><td>1, 2, 3, 4, 5</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>Sample CSV Template</h2>
+    <p>Copy the header row below and fill in your data:</p>
+    <code class="code-block">age,gender,major,academic_year,ai_usage,ai_frequency,comfort_level,gpa,career_interest,ethical_concern,job_replacement_fear,optimism_score<br>
+21,Female,Computer Science,Junior,Yes,Daily,4,3.7,5,3,2,4<br>
+19,Male,Business,Freshman,No,Never,2,3.1,2,4,4,3</code>
+</div>
+{% endblock %}

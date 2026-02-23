@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI Adoption Research Platform{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-brand">AI Adoption Research</div>
+    <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}"     {% if request.endpoint == 'index'     %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{{ url_for('upload') }}"    {% if request.endpoint == 'upload'    %}class="active"{% endif %}>Upload Data</a></li>
+        <li><a href="{{ url_for('analysis') }}"  {% if request.endpoint == 'analysis'  %}class="active"{% endif %}>Run Analysis</a></li>
+        <li><a href="{{ url_for('view_data') }}" {% if request.endpoint == 'view_data' %}class="active"{% endif %}>View Data</a></li>
+        <li><a href="{{ url_for('learn') }}"     {% if request.endpoint == 'learn'     %}class="active"{% endif %}>Learn Tests</a></li>
+        <li><a href="{{ url_for('about') }}"     {% if request.endpoint == 'about'     %}class="active"{% endif %}>About</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    <p>AI Adoption Research Platform &mdash; Academic Research Tool</p>
+    <p>Analyzing AI Adoption Among College Students: Trends, Impact, and Future Prospects</p>
+</footer>
+
+</body>
+</html>

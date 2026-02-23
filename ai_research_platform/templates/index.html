@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}Home - AI Research Platform{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>AI Adoption Research Analysis Platform</h1>
+    <p class="subtitle">Statistical analysis tool for studying AI adoption among college students</p>
+</div>
+
+<div class="research-banner">
+    <strong>Research Project:</strong> Analyzing AI Adoption Among College Students: Trends, Impact, and Future Prospects
+</div>
+
+{% if has_data %}
+<div class="stats-grid">
+    <div class="stat-card"><div class="stat-number">{{ stats.total_rows }}</div><div class="stat-label">Total Responses</div></div>
+    <div class="stat-card"><div class="stat-number">{{ stats.ai_users }}</div><div class="stat-label">AI Users</div></div>
+    <div class="stat-card"><div class="stat-number">{{ stats.avg_gpa }}</div><div class="stat-label">Average GPA</div></div>
+    <div class="stat-card"><div class="stat-number">{{ stats.avg_comfort }}</div><div class="stat-label">Avg Comfort Level</div></div>
+</div>
+<div class="action-buttons">
+    <a href="{{ url_for('analysis') }}" class="btn btn-primary">Run Full Analysis</a>
+    <a href="{{ url_for('view_data') }}" class="btn btn-secondary">View Data</a>
+    <a href="{{ url_for('reset') }}" class="btn btn-danger" onclick="return confirm('Delete all data and reset IDs to 1?')">Reset Database</a>
+</div>
+{% else %}
+<div class="empty-state">
+    <h2>No Data Loaded Yet</h2>
+    <p>Upload a CSV file or generate sample data to get started.</p>
+    <div class="action-buttons">
+        <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload CSV</a>
+        <a href="{{ url_for('generate_sample') }}" class="btn btn-secondary">Generate Sample Data (100 rows)</a>
+    </div>
+</div>
+{% endif %}
+
+<div class="info-grid">
+    <div class="info-card">
+        <h3>What This Platform Does</h3>
+        <p>Upload your survey CSV and get instant statistical analysis: Chi-Square, T-Test, ANOVA, Pearson Correlation — all with plain-English conclusions and charts.</p>
+    </div>
+    <div class="info-card">
+        <h3>Required CSV Columns</h3>
+        <p>age, gender, major, academic_year, ai_usage, ai_frequency, comfort_level, gpa, career_interest, ethical_concern, job_replacement_fear, optimism_score</p>
+    </div>
+    <div class="info-card">
+        <h3>What You Get</h3>
+        <p>Descriptive statistics, frequency tables, 8 charts, 5 statistical tests with one-line conclusions, a p-value summary chart, and a final research conclusion.</p>
+    </div>
+</div>
+{% endblock %}

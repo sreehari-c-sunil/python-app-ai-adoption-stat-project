@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}View Data{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>Stored Survey Data</h1>
+    <p class="subtitle">Showing first 50 of {{ total }} total rows</p>
+</div>
+<div class="action-buttons">
+    <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload More Data</a>
+    <a href="{{ url_for('reset') }}" class="btn btn-danger" onclick="return confirm('Delete all data and reset IDs to 1?')">Reset Database</a>
+</div>
+<div class="table-wrapper">
+    <table class="stats-table data-table">
+        <thead><tr>{% for col in columns %}<th>{{ col.replace('_',' ').title() }}</th>{% endfor %}</tr></thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>{% for col in columns %}<td>{{ row[col] }}</td>{% endfor %}</tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

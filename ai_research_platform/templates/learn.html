@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block title %}Learn About Tests - AI Research Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Learn About Statistical Tests</h1>
+    <p class="subtitle">Plain-language explanations of all tests used in this platform</p>
+</div>
+
+<div class="learn-card">
+    <h2>Chi-Square Test</h2>
+    <p><strong>What it is:</strong> A test to find out if two categorical (group) variables are related to each other.</p>
+    <p><strong>When to use it:</strong> When both variables are categories (like Gender and AI Usage).</p>
+    <p><strong>Example question:</strong> "Do males and females differ in whether they use AI?"</p>
+    <p><strong>How to read results:</strong> If the p-value is less than 0.05, the two variables ARE significantly related. If p-value is 0.05 or more, they are NOT significantly related.</p>
+    <p><strong>Assumptions:</strong> Each expected cell count should be at least 5. Works best with larger samples.</p>
+    <div class="formula-box">
+        Chi-Square Statistic = sum of (Observed - Expected)^2 / Expected
+    </div>
+</div>
+
+<div class="learn-card">
+    <h2>Independent Sample T-Test</h2>
+    <p><strong>What it is:</strong> A test to compare the average (mean) of a numeric variable between two groups.</p>
+    <p><strong>When to use it:</strong> When you have one numeric variable and one variable with exactly two groups.</p>
+    <p><strong>Example question:</strong> "Do AI users have a higher GPA than non-users?"</p>
+    <p><strong>How to read results:</strong> If p-value less than 0.05, the difference in means between the two groups IS statistically significant. Otherwise, it could just be random chance.</p>
+    <p><strong>Assumptions:</strong> Both groups should be normally distributed. Groups should be independent (different people). Sample size should ideally be 30+ per group.</p>
+    <div class="formula-box">
+        T-Statistic = (Mean1 - Mean2) / (Standard Error of Difference)
+    </div>
+</div>
+
+<div class="learn-card">
+    <h2>ANOVA (Analysis of Variance)</h2>
+    <p><strong>What it is:</strong> Like the T-Test, but compares means across three or more groups at once.</p>
+    <p><strong>When to use it:</strong> When you want to compare a numeric variable across more than 2 categories.</p>
+    <p><strong>Example question:</strong> "Does GPA differ significantly across students who use AI Daily, Weekly, Monthly, or Never?"</p>
+    <p><strong>How to read results:</strong> If p-value less than 0.05, at least one group is significantly different from the others. ANOVA does not tell you WHICH group; for that, you would need a post-hoc test (like Tukey's HSD).</p>
+    <p><strong>Assumptions:</strong> Each group should have a roughly normal distribution. Group variances should be similar (homogeneity of variance).</p>
+    <div class="formula-box">
+        F-Statistic = Variance Between Groups / Variance Within Groups
+    </div>
+</div>
+
+<div class="learn-card">
+    <h2>Pearson Correlation</h2>
+    <p><strong>What it is:</strong> Measures the strength and direction of the linear relationship between two numeric variables.</p>
+    <p><strong>When to use it:</strong> When both variables are numeric and you want to see if they move together.</p>
+    <p><strong>Example question:</strong> "As comfort level with AI increases, does GPA also tend to increase?"</p>
+    <p><strong>How to read the r value:</strong></p>
+    <ul>
+        <li>r close to +1: Strong positive relationship (both go up together)</li>
+        <li>r close to -1: Strong negative relationship (one goes up, other goes down)</li>
+        <li>r close to 0: No linear relationship</li>
+        <li>r between 0.4 and 0.7: Moderate relationship</li>
+        <li>r above 0.7: Strong relationship</li>
+    </ul>
+    <p><strong>Important note:</strong> Correlation does NOT mean causation. Just because two things move together does not mean one causes the other.</p>
+    <div class="formula-box">
+        r = (Sum of (x - mean_x)(y - mean_y)) / (n * std_x * std_y)
+    </div>
+</div>
+
+<div class="learn-card">
+    <h2>Logistic Regression</h2>
+    <p><strong>What it is:</strong> A statistical model that predicts the probability of a binary (yes/no) outcome based on one or more predictor variables.</p>
+    <p><strong>When to use it:</strong> When your outcome is binary (e.g., AI user = Yes or No) and you want to know which factors predict it.</p>
+    <p><strong>Example question:</strong> "Can we predict whether a student uses AI based on their GPA, age, and comfort level?"</p>
+    <p><strong>How to read results:</strong> A coefficient (positive or negative) tells us the direction of each predictor's influence. A significant p-value (less than 0.05) means that predictor is meaningful. Pseudo R-squared (0 to 1) shows how well the model fits overall.</p>
+    <p><strong>Limitations:</strong> Requires a reasonable sample size (at least 10 observations per predictor). Can overfit with small samples.</p>
+    <div class="formula-box">
+        log(p / (1-p)) = b0 + b1*x1 + b2*x2 + ... (where p = probability of outcome)
+    </div>
+</div>
+
+<div class="learn-card">
+    <h2>Understanding P-Values</h2>
+    <p>The p-value is the probability that your observed results happened by random chance, assuming the null hypothesis is true.</p>
+    <p><strong>Common threshold: 0.05 (5%)</strong></p>
+    <ul>
+        <li><strong>p less than 0.05:</strong> Reject H0. The result is statistically significant. There is less than a 5% chance this happened by random chance.</li>
+        <li><strong>p greater than or equal to 0.05:</strong> Fail to reject H0. The result is NOT statistically significant. The result could reasonably be due to chance.</li>
+    </ul>
+    <p><strong>Important note:</strong> "Statistically significant" does not always mean "practically important." A large enough sample will find almost anything significant. Always consider effect size and context.</p>
+</div>
+{% endblock %}
