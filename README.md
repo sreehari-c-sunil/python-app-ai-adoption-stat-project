@@ -153,18 +153,3 @@ LIMITATIONS
 - Self-reported data may contain bias
 - Statistical assumptions must be understood
 
---------------------------------------------------------------------
-
-EDUCATIONAL PURPOSE
-
-This project is intended for:
-- Academic research practice
-- Internship documentation
-- Statistics learning
-- Flask + Data Science portfolio demonstration
-
---------------------------------------------------------------------
-
-LICENSE
-Educational / Academic Use Only
-====================================================================#
